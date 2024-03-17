@@ -1,0 +1,18 @@
+{% extends "flatpages/default.html" %}
+
+{% block content %}
+  <h1>{{ ad.title }}</h1>
+  <p>{{ ad.content|safe }}</p>
+  <p>[{{ ad.category.name }}]</p>
+   {% if perms.board.change_ad and request.user == ad.user %}
+    <a href="{% url 'ad_update' ad.id %}">Изменить объявление</a>
+    {% endif %}
+  <h2>Отклики:</h2>
+  {% for response in ad.response_set.all %}
+    <div class="response">
+      <p>{{ response.content }}</p>
+    </div>
+  {% empty %}
+    <p>Нет откликов.</p>
+  {% endfor %}
+{% endblock %}
