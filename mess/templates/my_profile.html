@@ -1,0 +1,17 @@
+{% extends "flatpages/default.html" %}
+{% block content %}
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  <div class="formProfile">
+    <img class="avatar" src="{{ avatar }}" width="300" height="300">
+  </div>
+  <p>
+  {{ form.nickname }}
+  </p>
+  <p>
+  {{ form.avatar }}
+  </p>
+<input class="submit-button" type="submit" value="Сохранить">
+</form>
+{% endblock %}
+
